@@ -1,0 +1,10 @@
+2026-06-13T11:20:05Z [INFO] gitlab-runner: Running stage 'deploy' for pipeline #48279 (branch: main, commit: 9e1c7f5)
+2026-06-13T11:20:06Z [INFO] nomad: Submitting job 'order-fulfillment' to cluster prod-us-east
+2026-06-13T11:20:07Z [INFO] nomad: Evaluation a7e3 triggered, deploying 4 allocations
+2026-06-13T11:20:09Z [ERROR] nomad: Allocation 1/4 — image pull failed: GET https://artifactory.internal/v2/docker-local/order-fulfillment/manifests/9e1c7f5: 401 Unauthorized
+2026-06-13T11:20:09Z [ERROR] nomad: Allocation 2/4 — image pull failed: 401 Unauthorized
+2026-06-13T11:20:10Z [ERROR] nomad: Allocation 3/4 — image pull failed: 401 Unauthorized
+2026-06-13T11:20:10Z [ERROR] nomad: Allocation 4/4 — image pull failed: 401 Unauthorized
+2026-06-13T11:20:11Z [ERROR] nomad: Deployment for 'order-fulfillment' failed — 0/4 allocations started (image pull auth failure)
+2026-06-13T11:20:12Z [ERROR] pipeline: Stage 'deploy' failed (Artifactory credentials rejected on prod-us-east nodes). Pipeline #48279 FAILED.
+2026-06-13T11:20:12Z [INFO] pipeline: Hint: Nomad image pull token for artifactory.internal may be expired — rotate secret 'nomad/artifactory-pull-token' in Vault and restart Nomad clients.

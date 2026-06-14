@@ -1,0 +1,11 @@
+2026-06-12T13:55:01Z [INFO] gitlab-runner: Running stage 'deploy' for pipeline #48251 (branch: main, commit: d3a7c09)
+2026-06-12T13:55:02Z [INFO] artifactory: Pulled batch-processor:d3a7c09 (digest: sha256:4e7a...c88b)
+2026-06-12T13:55:03Z [INFO] nomad: Submitting job 'batch-processor' to cluster prod-us-east
+2026-06-12T13:55:04Z [WARN] nomad: Evaluation e3c9 triggered — scheduler waiting for eligible nodes
+2026-06-12T13:55:34Z [WARN] nomad: No nodes satisfy constraints: requires 8 CPU cores, 16GiB RAM — 0/12 nodes eligible
+2026-06-12T13:55:34Z [WARN] nomad: Node utilization: cpu_avg=91%, mem_avg=88% across prod-us-east cluster
+2026-06-12T13:56:05Z [WARN] nomad: Evaluation still pending — no placement after 60s
+2026-06-12T13:56:35Z [WARN] nomad: Evaluation still pending — no placement after 90s
+2026-06-12T13:57:05Z [ERROR] nomad: Evaluation timed out after 120s — job 'batch-processor' could not be placed
+2026-06-12T13:57:06Z [ERROR] pipeline: Stage 'deploy' failed (cluster resource exhaustion). Pipeline #48251 FAILED.
+2026-06-12T13:57:07Z [INFO] pipeline: Hint: scale prod-us-east cluster or reduce batch-processor resource request (currently cpu=8000MHz, mem=16384MiB).

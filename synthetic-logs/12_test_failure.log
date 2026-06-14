@@ -1,0 +1,10 @@
+2026-06-13T07:05:03Z [INFO] gitlab-runner: Running stage 'test' for pipeline #48270 (branch: feature/bulk-sync-refactor, commit: 1a9e7d3)
+2026-06-13T07:05:04Z [INFO] pytest: Collecting tests for inventory-sync
+2026-06-13T07:05:07Z [INFO] pytest: Collected 214 items
+2026-06-13T07:05:08Z [INFO] pytest: Running test suite (parallel workers=4)
+2026-06-13T07:05:41Z [ERROR] pytest: FAILED tests/unit/test_bulk_sync.py::test_sync_handles_empty_cursor — AssertionError: expected 0 records, got 1
+2026-06-13T07:05:41Z [ERROR] pytest: FAILED tests/unit/test_bulk_sync.py::test_sync_idempotent_on_retry — AssertionError: duplicate key in result set
+2026-06-13T07:05:41Z [ERROR] pytest: FAILED tests/integration/test_inventory_api.py::test_bulk_update_returns_422_on_bad_sku — AssertionError: expected HTTP 422, got 200
+2026-06-13T07:05:42Z [INFO] pytest: 211 passed, 3 failed, 0 skipped in 37.4s
+2026-06-13T07:05:43Z [ERROR] pipeline: Stage 'test' failed (3 test failures). Pipeline #48270 FAILED.
+2026-06-13T07:05:43Z [INFO] pipeline: Stages 'build' and 'deploy' skipped — test gate not cleared.

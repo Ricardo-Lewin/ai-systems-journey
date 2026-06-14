@@ -1,0 +1,11 @@
+2026-06-11T15:44:02Z [INFO] gitlab-runner: Running stage 'build' for pipeline #48231 (branch: feature/add-torch-inference, commit: f7c1a05)
+2026-06-11T15:44:03Z [INFO] docker: Building image ml-feature-server:f7c1a05
+2026-06-11T15:44:10Z [INFO] docker: Step 1/12 — FROM python:3.11-slim
+2026-06-11T15:44:18Z [INFO] docker: Step 4/12 — RUN pip install torch==2.3.0 torchvision==0.18.0
+2026-06-11T15:54:18Z [WARN] gitlab-runner: Build step has been running for 10m00s with no output
+2026-06-11T16:04:18Z [WARN] gitlab-runner: Build step has been running for 20m00s with no output
+2026-06-11T16:14:18Z [WARN] gitlab-runner: Build step has been running for 30m00s with no output
+2026-06-11T16:14:19Z [ERROR] gitlab-runner: Job exceeded maximum duration (30m) — sending SIGTERM to build process
+2026-06-11T16:14:21Z [ERROR] docker: Build interrupted — context cancelled
+2026-06-11T16:14:21Z [ERROR] pipeline: Stage 'build' failed (timeout after 30m). Pipeline #48231 FAILED.
+2026-06-11T16:14:22Z [INFO] pipeline: Hint: pin torch wheels from a local mirror or use a pre-built base image to avoid PyPI download stalls.

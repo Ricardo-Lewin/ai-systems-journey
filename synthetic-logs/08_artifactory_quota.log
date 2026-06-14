@@ -1,0 +1,11 @@
+2026-06-12T09:10:07Z [INFO] gitlab-runner: Running stage 'build' for pipeline #48244 (branch: main, commit: 2e8f3b1)
+2026-06-12T09:10:08Z [INFO] docker: Building image reporting-api:2e8f3b1
+2026-06-12T09:11:44Z [INFO] docker: Successfully built image (size: 289MB, layers: 11)
+2026-06-12T09:11:45Z [INFO] trivy: Scanning image for vulnerabilities...
+2026-06-12T09:12:08Z [INFO] trivy: Scan complete — 0 CRITICAL, 0 HIGH, 2 MEDIUM, 6 LOW
+2026-06-12T09:12:09Z [INFO] artifactory: Pushing reporting-api:2e8f3b1 to docker-local/reporting
+2026-06-12T09:12:31Z [WARN] artifactory: Upload stalled at 71% — retrying chunk
+2026-06-12T09:12:45Z [ERROR] artifactory: HTTP 507 Insufficient Storage — repository docker-local/reporting has exceeded its quota (500GB limit)
+2026-06-12T09:12:46Z [ERROR] artifactory: Push failed — no space left in repository
+2026-06-12T09:12:46Z [ERROR] pipeline: Stage 'build' failed (image push rejected by Artifactory). Pipeline #48244 FAILED.
+2026-06-12T09:12:47Z [INFO] pipeline: Hint: run cleanup policy on docker-local/reporting to evict images older than 30 days.

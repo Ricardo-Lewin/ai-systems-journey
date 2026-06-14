@@ -1,0 +1,10 @@
+2026-06-10T09:31:05Z [INFO] gitlab-runner: Running stage 'build' for pipeline #48190 (branch: feature/upgrade-deps, commit: 7e1b08d)
+2026-06-10T09:31:06Z [INFO] docker: Building image ledger-api:7e1b08d
+2026-06-10T09:32:51Z [INFO] docker: Successfully built image (size: 401MB, layers: 19)
+2026-06-10T09:32:52Z [INFO] trivy: Scanning image for vulnerabilities...
+2026-06-10T09:33:20Z [WARN] trivy: CVE-2026-3119 in openssl 3.0.2 — severity CRITICAL
+2026-06-10T09:33:20Z [WARN] trivy: CVE-2026-2887 in libxml2 2.9.13 — severity HIGH
+2026-06-10T09:33:21Z [ERROR] trivy: Scan complete — 1 CRITICAL, 1 HIGH, 5 MEDIUM, 8 LOW
+2026-06-10T09:33:21Z [ERROR] pipeline: Security gate FAILED — image contains CRITICAL vulnerabilities, blocking promotion to Artifactory.
+2026-06-10T09:33:22Z [ERROR] pipeline: Stage 'build' failed. Pipeline #48190 FAILED.
+2026-06-10T09:33:22Z [INFO] pipeline: Hint: bump openssl to >=3.0.14 in the base image.

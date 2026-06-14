@@ -1,0 +1,11 @@
+2026-06-12T16:30:14Z [INFO] gitlab-runner: Running stage 'migrate' for pipeline #48258 (branch: main, commit: 4b6f2e8)
+2026-06-12T16:30:15Z [INFO] migrate: Connecting to postgres://db-prod-us-east:5432/user_profiles
+2026-06-12T16:30:16Z [INFO] migrate: Current schema version: 42
+2026-06-12T16:30:16Z [INFO] migrate: Applying migration 43 — add_column_users_verified_at
+2026-06-12T16:30:17Z [INFO] migrate: Applying migration 44 — create_index_users_email_unique
+2026-06-12T16:30:18Z [ERROR] migrate: Migration 44 failed: ERROR 23505 duplicate key value violates unique constraint (table: users, column: email)
+2026-06-12T16:30:18Z [ERROR] migrate: Found 312 rows with duplicate email values — index cannot be created
+2026-06-12T16:30:19Z [WARN] migrate: Rolling back migration 43 (reversible)
+2026-06-12T16:30:19Z [INFO] migrate: Rollback of migration 43 complete — schema reverted to version 42
+2026-06-12T16:30:20Z [ERROR] pipeline: Stage 'migrate' failed (unique constraint violation in migration 44). Pipeline #48258 FAILED.
+2026-06-12T16:30:20Z [INFO] pipeline: Hint: deduplicate users.email before re-running; query: SELECT email, COUNT(*) FROM users GROUP BY email HAVING COUNT(*) > 1.

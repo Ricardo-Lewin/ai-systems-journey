@@ -1,0 +1,14 @@
+2026-06-13T13:45:03Z [INFO] gitlab-runner: Running stage 'deploy' for pipeline #48283 (branch: main, commit: 3d5a1b8)
+2026-06-13T13:45:04Z [INFO] artifactory: Pulled event-streamer:3d5a1b8 (digest: sha256:8f4c...b30e)
+2026-06-13T13:45:05Z [INFO] nomad: Submitting job 'event-streamer' to cluster prod-us-east
+2026-06-13T13:45:06Z [INFO] nomad: Evaluation f8a2 triggered, deploying 2 allocations
+2026-06-13T13:45:28Z [INFO] nomad: Allocation 1/2 healthy
+2026-06-13T13:45:40Z [INFO] nomad: Allocation 2/2 healthy
+2026-06-13T13:45:41Z [INFO] nomad: Deployment successful — job 'event-streamer' is running
+2026-06-13T13:45:42Z [INFO] pipeline: Stage 'deploy' completed successfully. Pipeline #48283 PASSED.
+2026-06-13T13:52:19Z [WARN] nomad: Node 'prod-east-node-07' disk utilisation at 94% (threshold: 90%)
+2026-06-13T13:52:20Z [WARN] nomad: Evicting low-priority allocations from prod-east-node-07 to reclaim disk
+2026-06-13T13:52:21Z [WARN] nomad: Evicting allocation event-streamer[1] from prod-east-node-07
+2026-06-13T13:52:22Z [ERROR] nomad: Allocation 1/2 lost — evicted due to disk pressure on prod-east-node-07
+2026-06-13T13:52:23Z [INFO] nomad: Rescheduling evicted allocation to prod-east-node-03
+2026-06-13T13:52:44Z [INFO] nomad: Rescheduled allocation healthy on prod-east-node-03 — service restored

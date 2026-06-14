@@ -1,0 +1,14 @@
+2026-06-08T11:47:02Z [INFO] nomad: Job 'deployment-automation-api' running (3/3 allocations healthy)
+2026-06-08T11:47:05Z [INFO] fastapi: Service started on :8080, workers=4
+2026-06-08T11:47:06Z [INFO] celery: Worker 'celery@alloc-7f3a' online, concurrency=8
+2026-06-08T11:48:19Z [INFO] celery: Received task deploy.run_pipeline[id=2f9c-aa11]
+2026-06-08T11:48:20Z [INFO] celery: deploy.run_pipeline[2f9c-aa11] starting — target=staging service=auth-gateway
+2026-06-08T11:48:41Z [ERROR] celery: deploy.run_pipeline[2f9c-aa11] raised exception
+2026-06-08T11:48:41Z [ERROR] celery: Traceback (most recent call last):
+2026-06-08T11:48:41Z [ERROR] celery:   File "/app/tasks/deploy.py", line 88, in run_pipeline
+2026-06-08T11:48:41Z [ERROR] celery:     conn = mysql.connect(host=DB_HOST, timeout=5)
+2026-06-08T11:48:41Z [ERROR] celery: sqlalchemy.exc.OperationalError: (2003) Can't connect to MySQL server on 'db-staging' (timed out after 5s)
+2026-06-08T11:48:41Z [ERROR] celery: deploy.run_pipeline[2f9c-aa11] FAILED — task will retry (1/3) in 30s
+2026-06-08T11:49:12Z [WARN] celery: deploy.run_pipeline[2f9c-aa11] retry 2/3 — same OperationalError
+2026-06-08T11:49:43Z [ERROR] celery: deploy.run_pipeline[2f9c-aa11] retry 3/3 exhausted — task moved to dead-letter queue
+2026-06-08T11:49:44Z [INFO] fastapi: Service still healthy — only the task failed, not the deployment.

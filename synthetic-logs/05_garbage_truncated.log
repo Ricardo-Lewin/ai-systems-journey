@@ -1,0 +1,7 @@
+[2026-06-07 03:12] runner picked up job
+building...
+####################              48%
+unexpected EOF while reading
+ runner: connection reset by peer
+xZ$@ ... binary output suppressed ...
+job interrupted
