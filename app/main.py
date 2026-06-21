@@ -8,12 +8,13 @@ As the journey progresses, new features are added as additional routers
 from fastapi import FastAPI
 
 from app.core.logging import configure_logging
-from app.routers import summarize
+from app.routers import health, summarize
 
 
 def create_app() -> FastAPI:
     configure_logging()
     app = FastAPI(title="AI Systems Journey")
+    app.include_router(health.router)
     app.include_router(summarize.router)
     return app
 

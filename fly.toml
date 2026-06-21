@@ -1,0 +1,25 @@
+# Fly.io config for the AI Systems Journey service.
+# `app` must be globally unique — `fly launch` will adjust it if taken.
+app = "ai-systems-journey"
+primary_region = "iad"  # Ashburn, US-East — matches the synthetic logs' prod-us-east
+
+[build]
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0   # scale to zero when idle (cost control)
+  processes = ["app"]
+
+  [[http_service.checks]]
+    interval = "15s"
+    timeout = "2s"
+    grace_period = "5s"
+    method = "GET"
+    path = "/health"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
