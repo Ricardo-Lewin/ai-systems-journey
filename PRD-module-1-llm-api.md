@@ -31,8 +31,8 @@ The service is designed headless so those can consume it unchanged.
 | Metric | Target |
 |--------|--------|
 | **Schema-valid response rate** | 100% of responses are a valid `LogSummary` — a real parse **or** a structured fallback. Never raw/garbage output to the caller. |
-| **Cost per request** | Logged on every call; stays **< $0.01/request** for a typical deploy log (a few hundred input tokens at Opus 4.8 rates). |
-| **Latency (p95)** | p95 end-to-end **< 10s**, backstopped by a 30s timeout + 1 retry (LLM treated as an unreliable dependency). |
+| **Cost per request** | Logged on every call; stays **< $0.02/request** for a typical deploy log at Opus 4.8 rates. (Revised up from $0.01 after a live log measured $0.017 — output tokens at $25/MTok dominate; see decision log.) |
+| **Latency (p95)** | p95 end-to-end **< 10s**, backstopped by a 30s timeout + 1 retry (LLM treated as an unreliable dependency). Measured via per-request `duration_ms` logging (`core/timing.py`). |
 | **Deployed + reachable** | A **live public URL** (Fly.io) returns a valid summary for a posted log — not localhost. |
 
 ## Scope
@@ -61,6 +61,8 @@ and cost logging. Model defaults to `claude-opus-4-8`. See [CLAUDE.md](CLAUDE.md
 
 - **LLM unreliability** → mitigated by timeout + retry + structured fallback (the core promise).
 - **Cost drift on large logs** → input scales with log size; the per-request cost log is the early
-  warning, and capping/truncation is a candidate if real logs blow the budget.
+  warning, and capping/truncation is a candidate if real logs blow the budget. The ceiling was
+  raised $0.01 → $0.02 after a live reading; kept Opus 4.8 over a cheaper model (Sonnet/Haiku)
+  pending an eval — full rationale in the decision log.
 - **Deploy target** → Fly.io chosen (Dockerfile + `fly secrets set ANTHROPIC_API_KEY`); the full
   rationale and anything rejected go in the Module 1 **decision log** (next deliverable).
