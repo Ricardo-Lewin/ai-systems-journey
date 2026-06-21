@@ -33,7 +33,46 @@ The decision logs are the point. The reasoning matters more than the code.
 
 ## Status
 
-🟢 **Module 0 — in progress** (June 2026)
+🟢 **Module 1 — shipped** (June 2026) · live demo below. Full status in [PROGRESS.md](PROGRESS.md),
+history in [CHANGELOG.md](CHANGELOG.md).
+
+## Module 1 — Log Summarizer (live)
+
+A FastAPI service that turns a raw deployment log into a validated, structured summary — with a
+per-request cost + latency signal and a structured fallback so it never returns garbage.
+
+**Live:** https://ai-systems-journey.fly.dev
+
+```bash
+# Summarize a deploy log (pipe any raw log to the endpoint)
+curl -s --data-binary @synthetic-logs/02_fail_scan_critical.log \
+  https://ai-systems-journey.fly.dev/summarize | jq
+```
+
+```jsonc
+{
+  "status": "failure",
+  "summary": "Pipeline #48190 failed at the build stage because the security scan found a CRITICAL vulnerability that blocked image promotion.",
+  "key_events": ["Docker image ledger-api:7e1b08d built successfully", "Trivy scan executed", "..."],
+  "errors": ["CVE-2026-3119 in openssl 3.0.2 — severity CRITICAL", "..."],
+  "suggested_next_step": "Bump openssl to >=3.0.14 in the base image, then rerun the pipeline.",
+  "confidence": "high"
+}
+```
+
+**How it's built:** layered FastAPI app (router → service → core), schema enforced via Anthropic's
+`messages.parse()` + Pydantic, timeout + retry treating the LLM as an unreliable dependency, and
+per-request token/cost + latency logged for observability. Deployed on Fly.io (scale-to-zero).
+
+**Honest metrics** (measured live, not aspirational):
+
+| Metric | Result |
+|--------|--------|
+| Schema-valid responses | 100% (real parse or structured fallback — never garbage) |
+| Cost / request | ~$0.017 on a typical log (Opus 4.8; ceiling set at $0.02) |
+| Latency | warm ≈ 6s · cold start ≈ 12s (scale-to-zero tradeoff) |
+
+→ [PRD](PRD-module-1-llm-api.md) · [Decision log](DECISION-LOG-module-1-llm-api.md) (incl. what was rejected)
 
 ## Stack (evolving)
 
